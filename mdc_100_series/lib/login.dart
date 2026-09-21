@@ -48,6 +48,7 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             const SizedBox(height: 120.0),
+            // TODO: Remove filled backgrounds when applying shape (103).
             TextField(
               controller: _usernameController,
               decoration: const InputDecoration(
@@ -64,9 +65,11 @@ class _LoginPageState extends State<LoginPage> {
               ),
               obscureText: true,
             ),
+            const SizedBox(height: 12.0),
             OverflowBar(
               alignment: MainAxisAlignment.end,
               children: <Widget>[
+                // TODO: Add the Shrine button shape (103).
                 TextButton(
                   onPressed: () {
                     _usernameController.clear();
@@ -74,6 +77,7 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   child: const Text('CANCEL'),
                 ),
+                // TODO: Add Shrine elevation and shape (103).
                 ElevatedButton(
                   onPressed: () {
                     Navigator.pop(context);
