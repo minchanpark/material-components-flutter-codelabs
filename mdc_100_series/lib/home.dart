@@ -19,29 +19,30 @@ import 'model/product.dart';
 import 'supplemental/asymmetric_view.dart';
 
 class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        brightness: Brightness.light,
         leading: IconButton(
-          icon: Icon(Icons.menu),
+          icon: const Icon(Icons.menu, semanticLabel: 'Menu'),
           onPressed: () {
-            print('Menu button');
+            debugPrint('Menu button');
           },
         ),
-        title: Text('SHRINE'),
+        title: const Text('SHRINE'),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search, semanticLabel: 'Search'),
             onPressed: () {
-              print('Search button');
+              debugPrint('Search button');
             },
           ),
           IconButton(
-            icon: Icon(Icons.tune),
+            icon: const Icon(Icons.tune, semanticLabel: 'Filter'),
             onPressed: () {
-              print('Filter button');
+              debugPrint('Filter button');
             },
           ),
         ],

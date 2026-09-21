@@ -18,21 +18,26 @@ import 'package:intl/intl.dart';
 import '../model/product.dart';
 
 class ProductCard extends StatelessWidget {
-  ProductCard({this.imageAspectRatio: 33 / 49, this.product})
-      : assert(imageAspectRatio == null || imageAspectRatio > 0);
+  const ProductCard({
+    super.key,
+    this.imageAspectRatio = 33 / 49,
+    required this.product,
+  }) : assert(imageAspectRatio > 0);
 
   final double imageAspectRatio;
   final Product product;
 
-  static final kTextBoxHeight = 65.0;
+  static const double kTextBoxHeight = 65.0;
 
   @override
   Widget build(BuildContext context) {
     final NumberFormat formatter = NumberFormat.simpleCurrency(
-        decimalDigits: 0, locale: Localizations.localeOf(context).toString());
+      decimalDigits: 0,
+      locale: Localizations.localeOf(context).toString(),
+    );
     final ThemeData theme = Theme.of(context);
 
-    final imageWidget = Image.asset(
+    final Widget imageWidget = Image.asset(
       product.assetName,
       package: product.assetPackage,
       fit: BoxFit.cover,
@@ -42,30 +47,25 @@ class ProductCard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
-        AspectRatio(
-          aspectRatio: imageAspectRatio,
-          child: imageWidget,
-        ),
+        AspectRatio(aspectRatio: imageAspectRatio, child: imageWidget),
         SizedBox(
-          height: kTextBoxHeight * MediaQuery.of(context).textScaleFactor,
+          height: MediaQuery.textScalerOf(context).scale(kTextBoxHeight),
           width: 121.0,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              // TODO(larche): Make headline6 when available
               Text(
-                product == null ? '' : product.name,
-                style: theme.textTheme.button,
+                product.name,
+                style: theme.textTheme.labelLarge,
                 softWrap: false,
                 overflow: TextOverflow.ellipsis,
                 maxLines: 1,
               ),
-              SizedBox(height: 4.0),
-              // TODO(larche): Make subtitle2 when available
+              const SizedBox(height: 4.0),
               Text(
-                product == null ? '' : formatter.format(product.price),
-                style: theme.textTheme.caption,
+                formatter.format(product.price),
+                style: theme.textTheme.bodySmall,
               ),
             ],
           ),
