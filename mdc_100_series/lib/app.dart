@@ -18,24 +18,27 @@ import 'home.dart';
 import 'login.dart';
 
 class ShrineApp extends StatelessWidget {
+  const ShrineApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Shrine',
-      home: HomePage(),
+      home: const HomePage(),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
+      theme: ThemeData(useMaterial3: true),
     );
   }
 
-  Route<dynamic> _getRoute(RouteSettings settings) {
+  Route<dynamic>? _getRoute(RouteSettings settings) {
     if (settings.name != '/login') {
       return null;
     }
 
     return MaterialPageRoute<void>(
       settings: settings,
-      builder: (BuildContext context) => LoginPage(),
+      builder: (BuildContext context) => const LoginPage(),
       fullscreenDialog: true,
     );
   }

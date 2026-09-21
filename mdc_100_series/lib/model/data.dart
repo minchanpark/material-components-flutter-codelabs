@@ -291,4 +291,3 @@ List<Product> getProducts(Category category) {
     }).toList();
   }
 }
-
