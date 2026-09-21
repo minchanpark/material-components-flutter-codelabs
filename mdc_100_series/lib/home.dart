@@ -19,6 +19,11 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Center(child: Text('You did it!')));
+    return const Scaffold(
+      // TODO: Add an app bar (102).
+      // TODO: Add a product grid (102).
+      body: Center(child: Text('You did it!')),
+      // TODO: Prevent keyboard insets from changing this page (101).
+    );
   }
 }

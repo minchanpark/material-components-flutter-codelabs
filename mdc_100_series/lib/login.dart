@@ -22,6 +22,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  // TODO: Add text editing controllers (101).
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +40,8 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             const SizedBox(height: 120.0),
+            // TODO: Add username and password fields (101).
+            // TODO: Add CANCEL and NEXT buttons (101).
           ],
         ),
       ),
