@@ -26,22 +26,13 @@ class ShrineApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Shrine',
-      home: const HomePage(),
       initialRoute: '/login',
-      onGenerateRoute: _getRoute,
+      routes: <String, WidgetBuilder>{
+        '/login': (BuildContext context) => const LoginPage(),
+        // TODO: Replace HomePage with the Backdrop flow (104).
+        '/': (BuildContext context) => const HomePage(),
+      },
       theme: _kShrineTheme,
-    );
-  }
-
-  Route<dynamic>? _getRoute(RouteSettings settings) {
-    if (settings.name != '/login') {
-      return null;
-    }
-
-    return MaterialPageRoute<void>(
-      settings: settings,
-      builder: (BuildContext context) => const LoginPage(),
-      fullscreenDialog: true,
     );
   }
 }

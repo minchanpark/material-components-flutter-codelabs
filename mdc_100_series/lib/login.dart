@@ -63,6 +63,7 @@ class _LoginPageState extends State<LoginPage> {
               decoration: const InputDecoration(labelText: 'Password'),
               obscureText: true,
             ),
+            const SizedBox(height: 12.0),
             OverflowBar(
               alignment: MainAxisAlignment.end,
               children: <Widget>[

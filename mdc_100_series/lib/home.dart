@@ -14,8 +14,8 @@
 
 import 'package:flutter/material.dart';
 
-import 'model/data.dart';
 import 'model/product.dart';
+import 'model/products_repository.dart';
 import 'supplemental/asymmetric_view.dart';
 
 class HomePage extends StatelessWidget {
@@ -23,6 +23,7 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // TODO: Move the app bar into a Backdrop and return its front layer (104).
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
@@ -47,7 +48,10 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: AsymmetricView(products: getProducts(Category.all)),
+      body: AsymmetricView(
+        products: ProductsRepository.loadProducts(Category.all),
+      ),
+      resizeToAvoidBottomInset: false,
     );
   }
 }
