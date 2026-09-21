@@ -36,40 +36,29 @@ class _ShrineAppState extends State<ShrineApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Shrine',
-      home: Backdrop(
-        currentCategory: _currentCategory,
-        frontLayer: HomePage(category: _currentCategory),
-        backLayer: CategoryMenuPage(
-          currentCategory: _currentCategory,
-          onCategoryTap: _onCategoryTap,
-        ),
-        frontTitle: const Text('SHRINE'),
-        backTitle: const Text('MENU'),
-      ),
       initialRoute: '/login',
-      onGenerateRoute: _getRoute,
+      routes: <String, WidgetBuilder>{
+        '/login': (BuildContext context) => const LoginPage(),
+        '/': (BuildContext context) => Backdrop(
+          currentCategory: _currentCategory,
+          frontLayer: HomePage(category: _currentCategory),
+          backLayer: CategoryMenuPage(
+            currentCategory: _currentCategory,
+            onCategoryTap: _onCategoryTap,
+          ),
+          frontTitle: const Text('SHRINE'),
+          backTitle: const Text('MENU'),
+        ),
+      },
       theme: _kShrineTheme,
     );
   }
 
-  /// Function to call when a [Category] is tapped.
   void _onCategoryTap(Category category) {
     setState(() {
       _currentCategory = category;
     });
   }
-}
-
-Route<dynamic>? _getRoute(RouteSettings settings) {
-  if (settings.name == '/login') {
-    return MaterialPageRoute<void>(
-      settings: settings,
-      builder: (BuildContext context) => const LoginPage(),
-      fullscreenDialog: true,
-    );
-  }
-
-  return null;
 }
 
 final ThemeData _kShrineTheme = _buildShrineTheme();
