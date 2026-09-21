@@ -15,22 +15,24 @@
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
+
   @override
-  _LoginPageState createState() => new _LoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
 class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: new SafeArea(
-        child: new ListView(
+    return Scaffold(
+      body: SafeArea(
+        child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 24.0),
           children: <Widget>[
             const SizedBox(height: 80.0),
-            new Column(
+            Column(
               children: <Widget>[
-                new Image.asset('assets/diamond.png'),
+                Image.asset('assets/diamond.png'),
                 const SizedBox(height: 16.0),
                 const Text('SHRINE'),
               ],
