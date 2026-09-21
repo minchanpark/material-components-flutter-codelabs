@@ -19,9 +19,9 @@ import 'model/product.dart';
 import 'supplemental/asymmetric_view.dart';
 
 class HomePage extends StatelessWidget {
-  final Category category;
+  const HomePage({super.key, this.category = Category.all});
 
-  const HomePage({this.category: Category.all});
+  final Category category;
 
   @override
   Widget build(BuildContext context) {
