@@ -15,14 +15,16 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import 'model/data.dart';
 import 'model/product.dart';
+import 'model/products_repository.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
 
   List<Card> _buildGridCards(BuildContext context) {
-    final List<Product> products = getProducts(Category.all);
+    final List<Product> products = ProductsRepository.loadProducts(
+      Category.all,
+    );
 
     if (products.isEmpty) {
       return const <Card>[];
@@ -36,7 +38,9 @@ class HomePage extends StatelessWidget {
     return products.map((product) {
       return Card(
         clipBehavior: Clip.antiAlias,
+        // TODO: Remove card elevation when applying the Shrine theme (103).
         child: Column(
+          // TODO: Center product labels in the themed layout (103).
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
             AspectRatio(
@@ -99,14 +103,14 @@ class HomePage extends StatelessWidget {
           ),
         ],
       ),
-      body: Center(
-        child: GridView.count(
-          crossAxisCount: 2,
-          padding: const EdgeInsets.all(16.0),
-          childAspectRatio: 8.0 / 9.0,
-          children: _buildGridCards(context),
-        ),
+      // TODO: Replace the product grid with AsymmetricView (103).
+      body: GridView.count(
+        crossAxisCount: 2,
+        padding: const EdgeInsets.all(16.0),
+        childAspectRatio: 8.0 / 9.0,
+        children: _buildGridCards(context),
       ),
+      resizeToAvoidBottomInset: false,
     );
   }
 }
