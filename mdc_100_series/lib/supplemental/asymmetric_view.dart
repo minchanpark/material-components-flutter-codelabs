@@ -18,13 +18,13 @@ import '../model/product.dart';
 import 'product_columns.dart';
 
 class AsymmetricView extends StatelessWidget {
+  const AsymmetricView({super.key, required this.products});
+
   final List<Product> products;
 
-  const AsymmetricView({Key key, this.products});
-
-  List<Container> _buildColumns(BuildContext context) {
-    if (products == null || products.isEmpty) {
-      return const <Container>[];
+  List<Widget> _buildColumns(BuildContext context) {
+    if (products.isEmpty) {
+      return const <Widget>[];
     }
 
     /// This will return a list of columns. It will oscillate between the two
@@ -36,27 +36,24 @@ class AsymmetricView extends StatelessWidget {
     /// helpers for creating the index of the product list that will correspond
     /// to the index of the list of columns.
     return List.generate(_listItemCount(products.length), (int index) {
-      double width = .59 * MediaQuery.of(context).size.width;
-      Widget column;
+      double width = .59 * MediaQuery.sizeOf(context).width;
+      final Widget column;
       if (index % 2 == 0) {
         /// Even cases
-        int bottom = _evenCasesIndex(index);
+        final int bottom = _evenCasesIndex(index);
         column = TwoProductCardColumn(
-            bottom: products[bottom],
-            top: products.length - 1 >= bottom + 1
-                ? products[bottom + 1]
-                : null);
+          bottom: products[bottom],
+          top: products.length - 1 >= bottom + 1 ? products[bottom + 1] : null,
+        );
         width += 32.0;
       } else {
         /// Odd cases
-        column = OneProductCardColumn(
-          product: products[_oddCasesIndex(index)],
-        );
+        column = OneProductCardColumn(product: products[_oddCasesIndex(index)]);
       }
-      return Container(
+      return SizedBox(
         width: width,
         child: Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16.0),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: column,
         ),
       );
@@ -88,7 +85,7 @@ class AsymmetricView extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       scrollDirection: Axis.horizontal,
-      padding: EdgeInsets.fromLTRB(0.0, 34.0, 16.0, 44.0),
+      padding: const EdgeInsets.fromLTRB(0.0, 34.0, 16.0, 44.0),
       children: _buildColumns(context),
     );
   }
